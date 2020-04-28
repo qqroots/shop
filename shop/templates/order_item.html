@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+    {% block content %}
+    <h3>訂單明細</h3>
+    <form action="/order_confirm/" method="POST"> {% csrf_token %} 
+        <table class="table">
+        <tr>
+            <th>商品編號</th>
+            <th>商品</th>
+            <th>價格</th>
+            <th>數量</th>
+        </tr>
+        {% for o in order_items %}
+        <tr>
+            <td><input type="checkbox" name="product_pk" value="{{ o.0 }}" checked="checked">{{ o.0 }}</td>
+            <td><input type="checkbox" name="product_name" value="{{ o.1 }}" checked="checked">{{ o.1 }}</td>
+            <td><input type="checkbox" name="product_price" value="{{ o.2 }}" checked="checked">{{ o.2 }}</td>
+            <td><input type="checkbox" name="product_qty" value="{{ o.3 }}" checked="checked">{{ o.3 }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+        
+        <h3><input type="checkbox" name="total" value={{total}} checked="checked">總金額：{{total}}</h3>
+        
+        <input type="submit" value="確認">
+    </form>
+        
+    
+    
+    
+    {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    </head>
+    <body>
+    {% block content %}
+
+    <h3>Hello! {{ user_name }}. 感謝您的訂單！ </h3>
+    <table class="table">
+        <tr>
+            <th>總金額</th>
+        </tr>
+        <tr>
+            <td>{{ total }}</td>
+        </tr>
+    </table>
+    <form action="/index/" method="POST"> {% csrf_token %}
+        <input type="submit" value="回首頁">
+    </form>
+    
+    
+    
+    
+    {% endblock %}
+    </body>
+</html>
