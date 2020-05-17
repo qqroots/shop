@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} 您的訂單 {% endblock title %}
+
+{% block content %}
+<h3>所有訂單</h3>
+<table class="table">
+    <tr>
+        <td>訂單編號</td>
+        <td>總金額</td>
+    </tr>
+    {% for o in orders reversed %}
+    <tr>
+        <td>{{ o.pk }}</td>
+        <td>{{ o.order_total }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+  
+
+{% endblock content %}

@@ -1,10 +1,12 @@
 {% extends 'base.html'%}
 
     {% block content %}
-        <form action="/order_item/" method="get">
+        <form action="/order_item/" method="POST"> {% csrf_token %}
         <table class="table">
         <tr>
-            <th>勾選</th>
+            {#<th>勾選</th>#}
+            
+            <th>商品編號</th>
             <th>商品</th>
             <th>價格</th>
             <th>庫存</th>
@@ -12,23 +14,13 @@
         </tr>
         {% for p in products %}
         <tr>
-            <td><input type="checkbox" name="id" value="{{ p.id }}"></td>
+            {#<td><input type="checkbox" name="id" value="{{ p.id }}"></td>#}
+            <td>{{ p.id }}</td>
             <td>{{ p.product_name }}</td>
             <td>{{ p.product_price }}</td>
             <td>{{ p.product_stock }}</td>
             <td>
-                <select name="product_qty" >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="8">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
+                <input type="text" name="product_qty">
             </td>
         </tr>
         {% endfor %}

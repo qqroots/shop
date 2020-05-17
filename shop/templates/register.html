@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Register Page{% endblock title %}
+
+{% block content %}
+    <form action="" method="POST"> {% csrf_token %}
+        {{ form.as_p }}
+        {% for field in form %}
+            <p style="color:red;">{{ field.errors }}</p>
+        {% endfor %}
+    <button type="submit">送出</button>
+{% endblock content %}

@@ -6,14 +6,26 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     </head>
     <body>
-        {% if user.is_authenticated %}
-            Hello, {{ user.username }}.
-            <a href="/accounts/logout/">logout</a>
-        {% else %}
-        <a href="/accounts/login/">login</a>
-        {% endif %}
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <h3><a href="/shop/" style="text-decoration:none">呷菜</a></h3>
+              </div>
+              <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li class="navbar-header">Hi, {{ user.username }}.</li>
+                    <li><a href="/accounts/logout/">登出</a></li>
+                    <li><a href="/user_order/">訂單</a></li>
+                {% else %}
+                    <li><a href="/accounts/login/">登入</a></li>
+                    <li><a href="/register/">註冊</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+        <div class="container">
         {% block content %}
          {% endblock %}
-         
+         </div>
     </body>
 </html>
